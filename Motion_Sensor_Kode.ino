@@ -19,16 +19,21 @@ void loop() {
   val = digitalRead(sensor);    // Læser sensorens state og klemmer det ind i variablen val
   
   if (val == HIGH) {            // Hvis val er høj så kør den her kode
+    
     digitalWrite(led, HIGH);    // Tænd led'en
     if (pirState == LOW) {      // Hvis pirState er lav så kør det her
+      Serial.println(val);      // Printer sensorens værdi i serial monitoren
       Serial.println("Der er noget lort foran mig!");     // Print det her når noget bevæger sig ind foran sensoren
       pirState = HIGH;          // Sæt pirState til høj
+      
     }
   } else {                      // Hvis alt går galt så bare bliv ved med at køre den her kode
     digitalWrite(led, LOW);     // Sluk for led'en
     if (pirState == HIGH){      // Kør det her hvis pirState er høj
+      Serial.println(val);      // Printer sensorens værdi i serial monitoren
       Serial.println("Lorten flyttede sig fra mit åsyn");     // Print noget når der ikke længere er noget foran sensoren
       pirState = LOW;           // Sæt pirState til lav
+      
     }
   }
 }
